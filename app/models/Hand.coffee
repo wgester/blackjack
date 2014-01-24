@@ -5,6 +5,17 @@ class window.Hand extends Backbone.Collection
   initialize: (array, @deck, @isDealer) ->
 
   hit: -> @add(@deck.pop()).last()
+  
+  stand: -> 
+    @at(0).flip()
+    @autohit()
+
+  autohit: ->
+    if @scores()[0] < 17
+      @hit()   
+      @autohit()
+    else 
+      @trigger 'gameover'
 
   scores: ->
     # The scores are an array of potential scores.

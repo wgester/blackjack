@@ -14,3 +14,14 @@
 .hand {
   overflow: auto;
 }
+
+.selected {
+  background-color: blue;
+}
+
+.score-container{
+  height: 100px;
+  width: 400px;
+  float: right;
+  border: 2px solid red;
+}
