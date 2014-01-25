@@ -22,6 +22,20 @@
 .score-container{
   height: 100px;
   width: 400px;
-  float: right;
   border: 2px solid red;
+  font-weight: bold;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.reset{
+  margin: 0 auto;
+  display: block;
+  height: 2.5em;
+  }
+
+.appView {
+  border: 2px solid blue;
+  width: 50%;
+  margin: 0 auto;
 }

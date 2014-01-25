@@ -12,15 +12,14 @@ class window.AppView extends Backbone.View
   events:
     "click .hit-button": -> @model.get('playerHand').hit()
     "click .stand-button": -> @model.get('dealerHand').stand()
-
+    "click .reset":  -> @clearGame()
+    
   initialize: -> 
     @render()
     @listenTo @model.get('dealerHand'), 'gameover', @declareWinner
     @listenTo @model.get('playerHand'), 'gameover', @declareWinner
-    @$el.on "click", ".reset", => @clearGame()
 
   declareWinner: ->
-    winner
     message = ""
     if @model.get('playerHand').scores() > 21 
       winner = "Dealer"
@@ -38,11 +37,12 @@ class window.AppView extends Backbone.View
   resetGame: ->
     @$('button').hide()
     $resetGame = $('<button class="reset">Reset Game</button>')
-    @$el.prepend($resetGame)
+    @$('.score-container').append($resetGame)
 
   clearGame: ->
+    @model.destroy()
     @model = new App()
-    @render()
+    @initialize()
 
   render: ->
     @$el.children().detach()
