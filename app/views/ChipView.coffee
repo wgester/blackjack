@@ -2,11 +2,11 @@ class window.ChipView extends Backbone.View
 
   className: 'chip'
 
-  template: _.template '<span class="chipsLeft">Chips Left: <%= chipVal %></span>
+  template: _.template '<span class="chipsLeft">Chips Left: <span class="chipValue"><%= chipVal %></span></span>
   <button class="increaseBet">Up the Ante</button>
   <button class="decreaseBet">Scared?</button>
   <span class="bet">Bet: <span class="betno">10</span> chips</span>
-  <button class="betButton">Place Bet</button>
+  <button class="betButton">Deal</button>
   '
 
   initialize: ->
@@ -33,6 +33,7 @@ class window.ChipView extends Backbone.View
       @$el.find('button').attr('disabled', true)
       $('.hit-button').attr('disabled', false)
       $('.stand-button').attr('disabled', false)
+      @model.trigger "startGame"
     else
       alert "You suck! You don't have enough chips!"
 

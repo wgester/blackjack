@@ -6,3 +6,4 @@ class window.Chips extends Backbone.Collection
     if @length isnt 1
       chip = new Chip({chipVal: 100})
       @add(chip)
+    @listenTo @, "startGame", -> @trigger "flipCards"

@@ -20,6 +20,13 @@ class window.AppView extends Backbone.View
     @render()
     @listenTo @model.get('dealerHand'), 'gameover', @declareWinner
     @listenTo @model.get('playerHand'), 'gameover', @declareWinner
+    @listenTo @model.get('chips'), 'flipCards', @flipCards
+
+
+  flipCards: ->
+    setTimeout @model.get('playerHand').at(0).flip.bind(@model.get('playerHand').at(0)), 500
+    setTimeout @model.get('playerHand').at(1).flip.bind(@model.get('playerHand').at(1)), 1000
+    setTimeout @model.get('dealerHand').at(1).flip.bind(@model.get('dealerHand').at(1)), 1500
 
   declareWinner: ->
     message = ""
@@ -41,7 +48,6 @@ class window.AppView extends Backbone.View
   collectWinnings: ->
     chipMod =  @model.get('chips').at(0)
     betNo = parseInt $('.betno').text()
-    console.log betNo
     chipVal = chipMod.get('chipVal')
     chipMod.set('chipVal', chipVal + (2 * betNo))
 

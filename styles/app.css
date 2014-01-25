@@ -41,9 +41,19 @@ body{
   }
 
 button {
+  font-size: 12px;
+  box-shadow: 2px 2px 2px black;
   margin-bottom: 5px;
   border-radius: 4px;
   height: 2.5em;
+}
+
+.bet, .chipsLeft{
+  font-size: 18px;
+}
+
+.betno, .chipValue {
+  font-weight: bold;
 }
 
 .appView {

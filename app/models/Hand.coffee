@@ -18,7 +18,7 @@ class window.Hand extends Backbone.Collection
 
   autohit: ->
     if @scores() < 17
-      @hit()   
+      @hit()
       @autohit()
     else if @scores() <= 21
       @trigger 'gameover'
