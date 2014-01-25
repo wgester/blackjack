@@ -5,7 +5,7 @@ class window.AppView extends Backbone.View
   template: _.template '
     <div class="score-container"></div>
     <button class="hit-button">Hit</button> <button class="stand-button">Stand</button>
-    <div class="player-hand-container"></div>
+    <div class="player-hand-container selected"></div>
     <div class="dealer-hand-container"></div>
   '
 
@@ -13,7 +13,7 @@ class window.AppView extends Backbone.View
     "click .hit-button": -> @model.get('playerHand').hit()
     "click .stand-button": -> @model.get('dealerHand').stand()
     "click .reset":  -> @clearGame()
-    
+
   initialize: -> 
     @render()
     @listenTo @model.get('dealerHand'), 'gameover', @declareWinner
@@ -33,7 +33,8 @@ class window.AppView extends Backbone.View
       winner = "Dealer"
     @$('.score-container').html "#{winner} wins! #{message}"
     @resetGame()
-  
+    $('.score-container').toggle()
+
   resetGame: ->
     @$('button').hide()
     $resetGame = $('<button class="reset">Reset Game</button>')

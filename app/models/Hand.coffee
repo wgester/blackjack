@@ -12,19 +12,19 @@ class window.Hand extends Backbone.Collection
   stand: -> 
     @at(0).flip()
     @autohit()
+    $('.dealer-hand-container').toggleClass "selected"
+    $('.player-hand-container').toggleClass "selected"
+
 
   autohit: ->
     if @scores() < 17
       @hit()   
       @autohit()
-    else 
+    else if @scores() <= 21
       @trigger 'gameover'
 
 
   scores: ->
-    # The scores are an array of potential scores.
-    # Usually, that array contains one element. That is the only score.
-    # when there is an ace, it offers you two scores - the original score, and score + 10.
     hasAce = @reduce (memo, card) ->
       memo or card.get('value') is 1
     , false

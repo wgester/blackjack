@@ -1,9 +1,13 @@
+body{
+  background-color: #302209;
+}
+
 .card {
   float: left;
   border: solid 1px black;
-  width: 100px;
+  width: 120px;
   border-radius: 5px;
-  height: 140px;
+  height: 167px;
   margin-right: 20px;
 }
 
@@ -16,26 +20,40 @@
 }
 
 .selected {
-  background-color: blue;
+  background-color: rgb(18, 192, 67);
 }
 
 .score-container{
+  border-radius: 10px;
+  display: none;
+  background-color: #F8F8B8;
   height: 100px;
-  width: 400px;
-  border: 2px solid red;
+  width: 100%;
+  padding-top: 10px;
   font-weight: bold;
   font-size: 1.5em;
   text-align: center;
 }
 
 .reset{
-  margin: 0 auto;
+  margin: 10px auto;
   display: block;
-  height: 2.5em;
   }
 
+button {
+  margin-bottom: 5px;
+  border-radius: 4px;
+  height: 2.5em;
+}
+
 .appView {
-  border: 2px solid blue;
+  padding: 10px;
+  border: 1px solid black;
   width: 50%;
   margin: 0 auto;
+  background-color: rgb(5, 139, 22);
+}
+
+.player-hand-container, .dealer-hand-container {
+  padding: 10px;
 }
