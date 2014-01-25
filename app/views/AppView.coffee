@@ -8,6 +8,7 @@ class window.AppView extends Backbone.View
     <button class="hit-button" disabled>Hit</button> <button class="stand-button" disabled>Stand</button>
     <div class="player-hand-container selected"></div>
     <div class="dealer-hand-container"></div>
+    <button class="hardReset">Give Up</button>
       
   '
 
@@ -15,6 +16,7 @@ class window.AppView extends Backbone.View
     "click .hit-button": -> @model.get('playerHand').hit()
     "click .stand-button": -> @model.get('dealerHand').stand()
     "click .reset":  -> @clearGame()
+    "click .hardReset": -> @hardResetGame()
 
   initialize: -> 
     @render()
@@ -49,16 +51,23 @@ class window.AppView extends Backbone.View
     chipMod =  @model.get('chips').at(0)
     betNo = parseInt $('.betno').text()
     chipVal = chipMod.get('chipVal')
+    chipMod.flag = false
     chipMod.set('chipVal', chipVal + (2 * betNo))
 
   resetGame: ->
     @$('button').hide()
-    $resetGame = $('<button class="reset">Reset Game</button>')
+    $resetGame = $('<br /><button class="reset">Reset Game</button>')
     @$('.score-container').append($resetGame)
+
 
   clearGame: ->
     @model.get('chips').at(0).save()
     @model.destroy()
+    @model = new App()
+    @initialize()
+
+  hardResetGame: ->
+    window.localStorage.clear()
     @model = new App()
     @initialize()
 

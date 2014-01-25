@@ -36,9 +36,14 @@ body{
 }
 
 .reset{
-  margin: 10px auto;
-  display: block;
-  }
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.hardReset{
+  position: relative;
+  left: 93%;
+}
 
 button {
   font-size: 12px;
@@ -55,6 +60,7 @@ button {
 .betno, .chipValue {
   font-weight: bold;
 }
+
 
 .appView {
   padding: 10px;

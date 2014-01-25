@@ -10,7 +10,9 @@ class window.ChipView extends Backbone.View
   '
 
   initialize: ->
-    @model.on 'change', => @render()
+    @model.on 'change', =>
+      if @model.flag
+        @render()
     @render()
   
   events: 
