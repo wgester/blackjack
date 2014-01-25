@@ -1,2 +1,3 @@
 class window.Chip extends Backbone.Model
-  initialize: (@value) ->
+  initialize: (params) ->
+    @set 'chipVal', params.chipVal

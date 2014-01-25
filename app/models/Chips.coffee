@@ -4,6 +4,5 @@ class window.Chips extends Backbone.Collection
   initialize: ->
     @fetch()
     if @length isnt 1
-      chip = new Chip(100)
+      chip = new Chip({chipVal: 100})
       @add(chip)
-    console.log @length
