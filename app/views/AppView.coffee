@@ -35,12 +35,14 @@ class window.AppView extends Backbone.View
     @resetGame()
     $('.score-container').toggle()
 
+
   resetGame: ->
     @$('button').hide()
     $resetGame = $('<button class="reset">Reset Game</button>')
     @$('.score-container').append($resetGame)
 
   clearGame: ->
+    @model.get('chips').at(0).save()
     @model.destroy()
     @model = new App()
     @initialize()
