@@ -2,17 +2,45 @@ class window.ChipView extends Backbone.View
 
   className: 'chip'
 
-  template: _.template '<button class="increaseBet">Up the Ante</button>
+  template: _.template '<span class="chipsLeft">Chips Left: <%= chipVal %></span>
+  <button class="increaseBet">Up the Ante</button>
   <button class="decreaseBet">Scared?</button>
-  <span class="bet">Bet: <%= chipVal %> chips</span>
+  <span class="bet">Bet: <span class="betno">10</span> chips</span>
+  <button class="betButton">Place Bet</button>
   '
 
   initialize: ->
-    @model.on 'change', => @render
+    @model.on 'change', => @render()
     @render()
+  
+  events: 
+    "click .betButton": "subtractBet"
+    "click .increaseBet": "incrementBet"
+    "click .decreaseBet": "decrementBet"
 
   ## Check here for performance issues - might need .detach()
   render: ->
+    @$el.html '<div class="chip"></div>'
     @$el.append @template(@model.attributes)
     @$el
-    console.log(@model)
+
+  subtractBet: ->
+    betVal = $(".betno").text()
+    if @model.get("chipVal") - betVal >= 0
+      @model.set "chipVal", @model.get("chipVal") - betVal
+      @model.save()
+      $('.betno').text(betVal)
+      @$el.find('button').attr('disabled', true)
+      $('.hit-button').attr('disabled', false)
+      $('.stand-button').attr('disabled', false)
+    else
+      alert "You suck! You don't have enough chips!"
+
+  incrementBet: ->
+    bet = parseInt $('.betno').text()
+    $('.betno').text(bet + 10)  
+
+  decrementBet: ->
+    bet = parseInt $('.betno').text()
+    if bet-10
+      $('.betno').text(bet - 10) 

@@ -4,10 +4,11 @@ class window.AppView extends Backbone.View
 
   template: _.template '
     <div class="score-container"></div>
-    <button class="hit-button">Hit</button> <button class="stand-button">Stand</button>
+    <div class="betCounter"></div>
+    <button class="hit-button" disabled>Hit</button> <button class="stand-button" disabled>Stand</button>
     <div class="player-hand-container selected"></div>
     <div class="dealer-hand-container"></div>
-    <div class="betCounter"></div>  
+      
   '
 
   events:
@@ -35,8 +36,14 @@ class window.AppView extends Backbone.View
     @$('.score-container').html "#{winner} wins! #{message}"
     @resetGame()
     $('.score-container').toggle()
-    # @model.get('chips').at(0).set('chipVal', 200)
+    @collectWinnings() if winner is "Player"
 
+  collectWinnings: ->
+    chipMod =  @model.get('chips').at(0)
+    betNo = parseInt $('.betno').text()
+    console.log betNo
+    chipVal = chipMod.get('chipVal')
+    chipMod.set('chipVal', chipVal + (2 * betNo))
 
   resetGame: ->
     @$('button').hide()

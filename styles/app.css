@@ -57,3 +57,8 @@ button {
 .player-hand-container, .dealer-hand-container {
   padding: 10px;
 }
+
+.betCounter {
+  float: right;
+  position: relative;
+}
